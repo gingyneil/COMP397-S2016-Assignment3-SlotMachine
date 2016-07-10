@@ -1,0 +1,24 @@
+{
+  "name": "comp397-s2016-lesson8",
+  "description": "BoilerPlate for COMP397",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Scripts/lib"
+  ],
+  "dependencies": {
+    "EaselJS": "easeljs#^0.8.2",
+    "SoundJS": "^0.6.2",
+    "TweenJS": "^0.6.2",
+    "PreloadJS": "^0.6.2"
+  },
+  "authors": [
+    "gingyneil <neil.reading.nr@gmail.com>"
+  ]
+}
