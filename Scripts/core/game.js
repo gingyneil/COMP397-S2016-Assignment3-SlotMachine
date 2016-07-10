@@ -39,8 +39,8 @@ window.addEventListener("load", init);
 function createUI() {
     //Add the slot machine image to the background of the game screen
     background = new createjs.Bitmap("assets/images/slotmachine.png");
-    background.x = (640 - background.image.width) / 2;
-    background.y = (640 - background.image.height) / 2;
+    background.regX = (540 - background.image.width) / 2;
+    background.regY = (680 - background.image.height) / 2;
     game.addChild(background);
     //Add 3 slot machine items for the game and set positions
     slotItem[0] = new createjs.Bitmap("assets/images/hulk.jpg");
