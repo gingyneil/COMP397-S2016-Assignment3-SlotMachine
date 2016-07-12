@@ -4,3 +4,4 @@
 /// <reference path="globals/preloadjs/index.d.ts" />
 /// <reference path="globals/soundjs/index.d.ts" />
 /// <reference path="globals/tweenjs/index.d.ts" />
+/// <reference path="../Scripts/core/button.ts"/>
