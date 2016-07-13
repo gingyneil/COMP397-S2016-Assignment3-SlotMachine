@@ -190,21 +190,36 @@ function clickBetOneButton() {
 }
 // click the bet 10 button
 function clickBetTenButton() {
-    playerBet += 10;
-    labelBetAmount.text = "$" + playerBet.toString();
-    labelTotalAmount.text = "$" + playerMoneyAmount.toString();
+    if (playerBet == 0 && playerMoneyAmount <= 0) {
+        alert("please add more cash or vacate the slot machine");
+    }
+    else {
+        playerBet += 10;
+        labelBetAmount.text = "$" + playerBet.toString();
+        labelTotalAmount.text = "$" + playerMoneyAmount.toString();
+    }
 }
 // click the bet 100 button
 function clickBetOneHundButton() {
-    playerBet += 100;
-    labelBetAmount.text = "$" + playerBet.toString();
-    labelTotalAmount.text = "$" + playerMoneyAmount.toString();
+    if (playerBet == 0 && playerMoneyAmount <= 0) {
+        alert("please add more cash or vacate the slot machine");
+    }
+    else {
+        playerBet += 100;
+        labelBetAmount.text = "$" + playerBet.toString();
+        labelTotalAmount.text = "$" + playerMoneyAmount.toString();
+    }
 }
 // click the bet MAX button
 function clickBetMaxButton() {
-    labelBetAmount.text = "$" + playerMoneyAmount.toString();
-    playerBet = playerMoneyAmount;
-    labelTotalAmount.text = "$" + playerBetAmount.toString();
+    if (playerBet == 0 && playerMoneyAmount <= 0) {
+        alert("please add more cash or vacate the slot machine");
+    }
+    else {
+        labelBetAmount.text = "$" + playerMoneyAmount.toString();
+        playerBet = playerMoneyAmount;
+        labelTotalAmount.text = "$" + playerBetAmount.toString();
+    }
 }
 // utility function to reset the game variables
 function resetFunction() {
