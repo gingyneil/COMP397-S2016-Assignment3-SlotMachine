@@ -1,4 +1,13 @@
 ///<reference path="reference.ts"/>
+/**
+ * Name: Neil Reading
+ * Student number: 300793474
+ * Date: July 10th/2016
+ *
+ * Description: Assignment 3 - SlotMachine project made using TypeScript
+ *
+ *
+ */
 //VARIABLES*********************************
 var slotContainers = [];
 var slotItem = [];
@@ -12,6 +21,7 @@ var labelTotalStatic; //label "total"
 var labelTotalAmount; // total money play has label
 var labelBetStatic; // bet label
 var labelBetAmount; //total number player has bet label
+//variables to control the users gameplay dollars
 var win;
 var playerBet;
 var playerBetAmount = 0;
@@ -27,19 +37,17 @@ var resetButton;
 var playerMoneyAmount = 1000; // how much the player has in total
 var jackpot = 5000;
 var batman = 0;
-var batmanPic;
-batmanPic = new createjs.Bitmap("../../Assets/images/batman.jpg");
 var spiderman = 0;
 var thor = 0;
 var hulk = 0;
 var ironman = 0;
 var superman = 0;
 var thanos = 0;
-var blankPic;
-blankPic = new createjs.Bitmap("../../Assets/images/blank.jpg");
 var blanks = 0;
 var indexBet = 0;
+// Event Listener to start the program after it loads 
 window.addEventListener("load", preload);
+//Images to preload for the game
 var assetData = [
     { id: "ResetButton", src: "../../Assets/images/resetButton.jpg" },
     { id: "SlotMachine", src: "../../Assets/images/slotmachine.png" },
@@ -65,12 +73,13 @@ var playerWinAmount = 0;
 var canvas = document.getElementById("canvas");
 // create a reference to a stage container
 var stage;
-//Preload images
+//Preload function that preloads images and when its done it calls the init function
 function preload() {
     assets = new createjs.LoadQueue();
     assets.loadManifest(assetData);
     assets.on("complete", init);
 }
+// Initializes the game creates the stage, framerate and ticker - also calls the main function 
 function init() {
     stage = new createjs.Stage(canvas); // instantiates the stage container
     createjs.Ticker.framerate = 60; // frame rate
@@ -82,6 +91,7 @@ function init() {
 function gameLoop() {
     stage.update(); // refreshes the page
 }
+//main function calls the CreateUI function and creates the event listeners for each button.
 function main() {
     game = new createjs.Container();
     stage.addChild(game);
@@ -173,10 +183,10 @@ function createUI() {
     game.addChild(betMaxButton);
     betMaxButton.x = 340;
     betMaxButton.y = 430;
-    //resetFunction();
 }
 // click the bet 1 button
 function clickBetOneButton() {
+    //checks to see if the player has enough money to make a bet. 
     if (playerBet == 0 && playerMoneyAmount <= 0) {
         alert("please add more cash or vacate the slot machine");
     }
@@ -244,6 +254,7 @@ function resetFunction() {
 }
 // determines the results of the spin
 function _spinReels() {
+    //checks to see if the player has enough money to make the bet
     if (playerBet == 0 || playerMoneyAmount <= 0) {
         alert("please place a wager");
     }
@@ -327,6 +338,7 @@ function _spinReels() {
         }
     }
 }
+//Determines the players winnings
 function determineWinnings() {
     if (blanks == 0) {
         if (hulk == 3) {
@@ -408,11 +420,6 @@ function determineWinnings() {
     }
     else {
         //show the loss
-        console.log("Loss!"
-            + "blanks:" + blanks + "\n" + "batman:" + batman + "\n" +
-            "hulk: " + hulk + "\n" + "spiderman: " + spiderman + "\n" +
-            "superman: " + superman + "\n" + "thanos: " + thanos + "\n" +
-            "ironman: " + ironman + "\n" + "thor: " + thor);
         playerMoneyAmount -= playerBet;
         labelWinAmount.text = "$" + playerBetAmount.toString();
         labelTotalAmount.text = "$" + playerMoneyAmount.toString();

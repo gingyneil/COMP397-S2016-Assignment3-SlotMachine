@@ -1,6 +1,14 @@
 ///<reference path="reference.ts"/>
 
-
+/**
+ * Name: Neil Reading 
+ * Student number: 300793474
+ * Date: July 10th/2016
+ * 
+ * Description: Assignment 3 - SlotMachine project made using TypeScript
+ * 
+ * 
+ */
 
 //VARIABLES*********************************
 let slotContainers: createjs.Container[] = [];
@@ -17,6 +25,8 @@ let labelTotalStatic: createjs.Text; //label "total"
 let labelTotalAmount: objects.Label;// total money play has label
 let labelBetStatic: createjs.Text;// bet label
 let labelBetAmount: objects.Label; //total number player has bet label
+
+//variables to control the users gameplay dollars
 let win: number;
 let playerBet: number;
 let playerBetAmount = 0;
@@ -35,20 +45,19 @@ let resetButton: Button;
 let playerMoneyAmount = 1000;// how much the player has in total
 let jackpot = 5000;
 let batman = 0;
-let batmanPic: createjs.Bitmap;
-batmanPic = new createjs.Bitmap("../../Assets/images/batman.jpg");
 let spiderman = 0;
 let thor = 0;
 let hulk = 0;
 let ironman = 0;
 let superman = 0;
 let thanos = 0;
-let blankPic: createjs.Bitmap;
-blankPic = new createjs.Bitmap("../../Assets/images/blank.jpg");
 let blanks = 0;
 let indexBet = 0;
 
+// Event Listener to start the program after it loads 
 window.addEventListener("load", preload);
+
+//Images to preload for the game
 var assetData: objects.Asset[] = [
     { id: "ResetButton", src: "../../Assets/images/resetButton.jpg" },
     { id: "SlotMachine", src: "../../Assets/images/slotmachine.png" },
@@ -69,6 +78,8 @@ var assetData: objects.Asset[] = [
     { id: "thanos", src: "../../Assets/images/thanos.jpg" },
     { id: "blank", src: "../../Assets/images/blank.jpg" }
 ];
+
+
 let assets: createjs.LoadQueue;
 let playerWinAmount = 0;
 
@@ -77,7 +88,7 @@ let canvas: HTMLElement = document.getElementById("canvas");
 // create a reference to a stage container
 let stage: createjs.Stage;
 
-//Preload images
+//Preload function that preloads images and when its done it calls the init function
 function preload() {
     assets = new createjs.LoadQueue();
     assets.loadManifest(assetData);
@@ -85,6 +96,7 @@ function preload() {
 
 }
 
+// Initializes the game creates the stage, framerate and ticker - also calls the main function 
 function init(): void {
     stage = new createjs.Stage(canvas);// instantiates the stage container
     createjs.Ticker.framerate = 60; // frame rate
@@ -99,6 +111,7 @@ function gameLoop(): void {
     stage.update(); // refreshes the page
 }
 
+//main function calls the CreateUI function and creates the event listeners for each button.
 function main(): void {
     game = new createjs.Container();
     stage.addChild(game);
@@ -212,7 +225,7 @@ function createUI() {
     betMaxButton.x = 340;
     betMaxButton.y = 430;
 
-    //resetFunction();
+ 
 }
 
 
@@ -220,6 +233,7 @@ function createUI() {
 // click the bet 1 button
 function clickBetOneButton() {
 
+//checks to see if the player has enough money to make a bet. 
     if (playerBet == 0 && playerMoneyAmount <= 0) {
         alert("please add more cash or vacate the slot machine");
     }
@@ -297,7 +311,7 @@ function resetFunction() {
 // determines the results of the spin
 function _spinReels(): string[] {
 
-
+//checks to see if the player has enough money to make the bet
     if (playerBet == 0 || playerMoneyAmount <= 0) {
 
         alert("please place a wager");
@@ -386,10 +400,8 @@ function _spinReels(): string[] {
     }
 }
 
-
+//Determines the players winnings
 function determineWinnings(): void {
-
-
 
     if (blanks == 0) {
         if (hulk == 3) {
@@ -471,12 +483,7 @@ function determineWinnings(): void {
     }
     else {
         //show the loss
-        console.log("Loss!"
-            + "blanks:" + blanks + "\n" + "batman:" + batman + "\n" +
-            "hulk: " + hulk + "\n" + "spiderman: " + spiderman + "\n" +
-            "superman: " + superman + "\n" + "thanos: " + thanos + "\n" +
-            "ironman: " + ironman + "\n" + "thor: " + thor
-        );
+        
         playerMoneyAmount -= playerBet;
 
         labelWinAmount.text = "$" + playerBetAmount.toString();
