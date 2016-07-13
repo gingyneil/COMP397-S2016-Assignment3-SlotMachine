@@ -177,26 +177,26 @@ function clickBetOneButton() {
     //update variables
     playerBet += 1;
     //upday labels on game
-    labelBetAmount.text = playerBet.toString();
-    labelTotalAmount.text = playerMoneyAmount.toString();
+    labelBetAmount.text = "$" + playerBet.toString();
+    labelTotalAmount.text = "$" + playerMoneyAmount.toString();
 }
 // click the bet 10 button
 function clickBetTenButton() {
     playerBet += 10;
-    labelBetAmount.text = playerBet.toString();
-    labelTotalAmount.text = playerMoneyAmount.toString();
+    labelBetAmount.text = "$" + playerBet.toString();
+    labelTotalAmount.text = "$" + playerMoneyAmount.toString();
 }
 // click the bet 100 button
 function clickBetOneHundButton() {
     playerBet += 100;
-    labelBetAmount.text = playerBet.toString();
-    labelTotalAmount.text = playerMoneyAmount.toString();
+    labelBetAmount.text = "$" + playerBet.toString();
+    labelTotalAmount.text = "$" + playerMoneyAmount.toString();
 }
 // click the bet MAX button
 function clickBetMaxButton() {
-    labelBetAmount.text = playerMoneyAmount.toString();
+    labelBetAmount.text = "$" + playerMoneyAmount.toString();
     playerBet = playerMoneyAmount;
-    labelTotalAmount.text = playerBetAmount.toString();
+    labelTotalAmount.text = "$" + playerBetAmount.toString();
 }
 // utility function to reset the game variables
 function resetFunction() {
@@ -205,16 +205,27 @@ function resetFunction() {
     playerWinAmount = 0;
     playerMoneyAmount = 1000;
     jackpot = 5000;
-    labelBetAmount.text = playerBet.toString();
-    labelWinAmount.text = win.toString();
-    labelTotalAmount.text = playerMoneyAmount.toString();
+    slotContainers[0].removeAllChildren();
+    slotContainers[1].removeAllChildren();
+    slotContainers[2].removeAllChildren();
+    labelBetAmount.text = "$" + playerBet.toString();
+    labelWinAmount.text = "$" + win.toString();
+    labelTotalAmount.text = "$" + playerMoneyAmount.toString();
 }
 // determines the results of the spin
 function _spinReels() {
-    if (playerBet == 0) {
+    if (playerBet == 0 || playerMoneyAmount <= 0) {
         alert("please place a wager");
     }
     else {
+        hulk = 0;
+        batman = 0;
+        spiderman = 0;
+        superman = 0;
+        blanks = 0;
+        thor = 0;
+        thanos = 0;
+        ironman = 0;
         slotContainers[0].removeAllChildren();
         slotContainers[1].removeAllChildren();
         slotContainers[2].removeAllChildren();
@@ -274,6 +285,7 @@ function _spinReels() {
                     break;
             }
         }
+        console.log(betLine, "\n" + outCome);
         determineWinnings();
         return betLine;
     }
@@ -345,26 +357,26 @@ function determineWinnings() {
             playerMoneyAmount += win;
         }
         //log win
-        alert("YOU WON! " + win);
-        console.log("Win!" + win);
+        alert("YOU WON! " + "$" + win);
+        console.log("Win!" + "$" + win);
         //show how much they won
-        labelWinAmount.text = win.toString();
+        labelWinAmount.text = "$" + win.toString();
         //calculate the amount won. show in the label      
-        labelTotalAmount.text = playerMoneyAmount.toString();
+        labelTotalAmount.text = "$" + playerMoneyAmount.toString();
         playerBet = 0;
         blanks = 0;
-        labelBetAmount.text = playerBet.toString();
+        labelBetAmount.text = "$" + playerBet.toString();
         //reset the bet amount
-        labelBetAmount.text = playerBet.toString();
+        labelBetAmount.text = "$" + playerBet.toString();
     }
     else {
         //show the loss
         console.log("Loss!");
         playerMoneyAmount -= playerBet;
-        labelTotalAmount.text = playerMoneyAmount.toString();
+        labelTotalAmount.text = "$" + playerMoneyAmount.toString();
         if (playerMoneyAmount == 0) {
             playerBet = 0;
-            labelBetAmount.text = playerBet.toString();
+            labelBetAmount.text = "$" + playerBet.toString();
             alert("you lose please add more cash or vacate the slot machine");
         }
         playerBetAmount = 0;
@@ -382,23 +394,4 @@ function checkRange(value, lowerBounds, upperBounds) {
 function mouseOver() {
     betOneButton.alpha = .1;
 }
-/*function clickSpinButton(event: createjs.MouseEvent): void {
-    // ensure player has enough money to play
-    if (playerBet > 0) {
-        var bitmap: string[] = _spinReels();
-
-        
-
-         for (var reel: number = 0; reel < 3; reel++) {
-             _reels[reel].image = assets.getResult(bitmap[reel]);
-         }
-
-        determineWinnings();
-
-        // reset player's bet to zero
-        playerBet = 0;
-        labelBetAmount.text = playerBet.toString();
-    }
-
-}*/
 //# sourceMappingURL=game.js.map
