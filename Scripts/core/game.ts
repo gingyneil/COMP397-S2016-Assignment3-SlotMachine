@@ -20,6 +20,7 @@ let labelBetAmount: objects.Label; //total number player has bet label
 let win: number;
 let playerBet: number;
 let playerBetAmount = 0;
+ playerBet = 0;
 
 //buttons
 let spinButton: createjs.Bitmap;
@@ -31,7 +32,7 @@ let resetButton: Button;
 
 
 //GAME VARIABLES
-let playerMoneyAmount = 0;// how much the player has in total
+let playerMoneyAmount = 1000;// how much the player has in total
 let jackpot = 5000;
 let batman = 0;
 let batmanPic: createjs.Bitmap;
@@ -55,6 +56,9 @@ var assetData: objects.Asset[] = [
     { id: "Bet10Button", src: "../../Assets/images/bet10button.jpg" },
     { id: "Bet100Button", src: "../../Assets/images/bet100button.jpg" },
     { id: "SpinButton", src: "../../Assets/images/spin-button.jpeg" },
+    { id: "marvel", src: "../../Assets/images/marvel.jpg" },
+    { id: "vs", src: "../../Assets/images/vs.jpg" },
+    { id: "DC", src: "../../Assets/images/DCComicslogo.jpg" },
 
     { id: "batman", src: "../../Assets/images/batman.jpg" },
     { id: "hulk", src: "../../Assets/images/hulk.jpg" },
@@ -67,7 +71,7 @@ var assetData: objects.Asset[] = [
 ];
 let assets: createjs.LoadQueue;
 let playerWinAmount = 0;
-let tallyOfBetAmount = 0;
+
 // make a reference to the canvas element
 let canvas: HTMLElement = document.getElementById("canvas");
 // create a reference to a stage container
@@ -119,7 +123,7 @@ function createUI() {
     //Add 3 slot machine items for the game and set default positions
     slotContainers[0] = new createjs.Container();
     slotContainers[1] = new createjs.Container();
-    slotContainers[2] = new createjs.Container();
+    slotContainers[2] = new createjs.Container();    
     game.addChild(slotContainers[0]);
     game.addChild(slotContainers[1]);
     game.addChild(slotContainers[2]);
@@ -129,6 +133,16 @@ function createUI() {
     slotContainers[1].y = 200;
     slotContainers[2].x = 415;
     slotContainers[2].y = 200;
+
+
+    slotItem[0] = new createjs.Bitmap("assets/images/marvel.jpg");
+    slotItem[1] = new createjs.Bitmap("assets/images/vs.jpg");
+    slotItem[2] = new createjs.Bitmap("assets/images/DCComicslogo.jpg");
+
+    
+    slotContainers[0].addChild(slotItem[0]);
+    slotContainers[1].addChild(slotItem[1]);
+    slotContainers[2].addChild(slotItem[2]);
 
     //Create and Add labels and buttons for won, bet and total*********************************
 
@@ -198,16 +212,10 @@ function createUI() {
     betMaxButton.x = 340;
     betMaxButton.y = 430;
 
-    resetFunction();
+    //resetFunction();
 }
 
-function validBet(playerBet: number) {
-    if (playerBet <= playerMoneyAmount) {
-        playerBet += playerBet;
-        playerMoneyAmount -= playerBet;
 
-    }
-}
 
 // click the bet 1 button
 function clickBetOneButton() {
@@ -252,8 +260,16 @@ function resetFunction() {
     playerMoneyAmount = 1000;
     jackpot = 5000;
     slotContainers[0].removeAllChildren();
-     slotContainers[1].removeAllChildren();
-      slotContainers[2].removeAllChildren();
+    slotContainers[1].removeAllChildren();
+    slotContainers[2].removeAllChildren();
+
+    
+    slotItem[0] = new createjs.Bitmap("assets/images/marvel.jpg");
+    slotItem[1] = new createjs.Bitmap("assets/images/vs.jpg");
+    slotItem[2] = new createjs.Bitmap("assets/images/DCComicslogo.jpg");
+    slotContainers[0].addChild(slotItem[0]);
+    slotContainers[1].addChild(slotItem[1]);
+    slotContainers[2].addChild(slotItem[2]);
 
     labelBetAmount.text = "$" + playerBet.toString();
     labelWinAmount.text = "$" + win.toString();
@@ -275,7 +291,7 @@ function _spinReels(): string[] {
         thor = 0;
         thanos = 0;
         ironman = 0;
-    
+
 
         slotContainers[0].removeAllChildren();
         slotContainers[1].removeAllChildren();
@@ -428,7 +444,12 @@ function determineWinnings(): void {
     }
     else {
         //show the loss
-        console.log("Loss!");
+        console.log("Loss!"
+         + "blanks:" + blanks + "\n" + "batman:" + batman + "\n" + 
+        "hulk: " + hulk + "\n" + "spiderman: " + spiderman + "\n" +
+        "superman: " + superman + "\n" + "thanos: " + thanos + "\n" +
+        "ironman: " + ironman + "\n" + "thor: " + thor
+        );
         playerMoneyAmount -= playerBet;
         labelTotalAmount.text = "$" + playerMoneyAmount.toString();
         if (playerMoneyAmount == 0) {

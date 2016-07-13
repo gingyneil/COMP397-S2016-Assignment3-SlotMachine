@@ -15,6 +15,7 @@ var labelBetAmount; //total number player has bet label
 var win;
 var playerBet;
 var playerBetAmount = 0;
+playerBet = 0;
 //buttons
 var spinButton;
 var bet10Button;
@@ -23,7 +24,7 @@ var betMaxButton;
 var betOneButton;
 var resetButton;
 //GAME VARIABLES
-var playerMoneyAmount = 0; // how much the player has in total
+var playerMoneyAmount = 1000; // how much the player has in total
 var jackpot = 5000;
 var batman = 0;
 var batmanPic;
@@ -46,6 +47,9 @@ var assetData = [
     { id: "Bet10Button", src: "../../Assets/images/bet10button.jpg" },
     { id: "Bet100Button", src: "../../Assets/images/bet100button.jpg" },
     { id: "SpinButton", src: "../../Assets/images/spin-button.jpeg" },
+    { id: "marvel", src: "../../Assets/images/marvel.jpg" },
+    { id: "vs", src: "../../Assets/images/vs.jpg" },
+    { id: "DC", src: "../../Assets/images/DCComicslogo.jpg" },
     { id: "batman", src: "../../Assets/images/batman.jpg" },
     { id: "hulk", src: "../../Assets/images/hulk.jpg" },
     { id: "ironman", src: "../../Assets/images/Ironman.jpg" },
@@ -57,7 +61,6 @@ var assetData = [
 ];
 var assets;
 var playerWinAmount = 0;
-var tallyOfBetAmount = 0;
 // make a reference to the canvas element
 var canvas = document.getElementById("canvas");
 // create a reference to a stage container
@@ -110,6 +113,12 @@ function createUI() {
     slotContainers[1].y = 200;
     slotContainers[2].x = 415;
     slotContainers[2].y = 200;
+    slotItem[0] = new createjs.Bitmap("assets/images/marvel.jpg");
+    slotItem[1] = new createjs.Bitmap("assets/images/vs.jpg");
+    slotItem[2] = new createjs.Bitmap("assets/images/DCComicslogo.jpg");
+    slotContainers[0].addChild(slotItem[0]);
+    slotContainers[1].addChild(slotItem[1]);
+    slotContainers[2].addChild(slotItem[2]);
     //Create and Add labels and buttons for won, bet and total*********************************
     //Bet label and bet amount label
     labelBetStatic = new createjs.Text("BET AMOUNT", "20px Arial", "#FFFFFF");
@@ -164,13 +173,7 @@ function createUI() {
     game.addChild(betMaxButton);
     betMaxButton.x = 340;
     betMaxButton.y = 430;
-    resetFunction();
-}
-function validBet(playerBet) {
-    if (playerBet <= playerMoneyAmount) {
-        playerBet += playerBet;
-        playerMoneyAmount -= playerBet;
-    }
+    //resetFunction();
 }
 // click the bet 1 button
 function clickBetOneButton() {
@@ -208,6 +211,12 @@ function resetFunction() {
     slotContainers[0].removeAllChildren();
     slotContainers[1].removeAllChildren();
     slotContainers[2].removeAllChildren();
+    slotItem[0] = new createjs.Bitmap("assets/images/marvel.jpg");
+    slotItem[1] = new createjs.Bitmap("assets/images/vs.jpg");
+    slotItem[2] = new createjs.Bitmap("assets/images/DCComicslogo.jpg");
+    slotContainers[0].addChild(slotItem[0]);
+    slotContainers[1].addChild(slotItem[1]);
+    slotContainers[2].addChild(slotItem[2]);
     labelBetAmount.text = "$" + playerBet.toString();
     labelWinAmount.text = "$" + win.toString();
     labelTotalAmount.text = "$" + playerMoneyAmount.toString();
@@ -371,7 +380,11 @@ function determineWinnings() {
     }
     else {
         //show the loss
-        console.log("Loss!");
+        console.log("Loss!"
+            + "blanks:" + blanks + "\n" + "batman:" + batman + "\n" +
+            "hulk: " + hulk + "\n" + "spiderman: " + spiderman + "\n" +
+            "superman: " + superman + "\n" + "thanos: " + thanos + "\n" +
+            "ironman: " + ironman + "\n" + "thor: " + thor);
         playerMoneyAmount -= playerBet;
         labelTotalAmount.text = "$" + playerMoneyAmount.toString();
         if (playerMoneyAmount == 0) {
