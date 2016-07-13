@@ -247,76 +247,83 @@ function _spinReels() {
         alert("please place a wager");
     }
     else {
-        hulk = 0;
-        batman = 0;
-        spiderman = 0;
-        superman = 0;
-        blanks = 0;
-        thor = 0;
-        thanos = 0;
-        ironman = 0;
-        slotContainers[0].removeAllChildren();
-        slotContainers[1].removeAllChildren();
-        slotContainers[2].removeAllChildren();
-        var betLine = [" ", " ", " "];
-        var outCome = [0, 0, 0];
-        var bitmap;
-        for (var spin = 0; spin < 3; spin++) {
-            outCome[spin] = Math.floor((Math.random() * 65) + 1);
-            switch (outCome[spin]) {
-                case checkRange(outCome[spin], 1, 27):
-                    betLine[spin] = "Blank";
-                    blanks++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/blank.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 28, 37):
-                    betLine[spin] = "hulk";
-                    hulk++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/hulk.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 38, 46):
-                    betLine[spin] = "spiderman";
-                    spiderman++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/spiderman.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 47, 54):
-                    betLine[spin] = "ironman";
-                    ironman++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/Ironman.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 55, 59):
-                    betLine[spin] = "superman";
-                    superman++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/superman.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 60, 62):
-                    betLine[spin] = "thor";
-                    thor++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/Thor.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 63, 64):
-                    betLine[spin] = "thanos";
-                    thanos++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/thanos.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 65, 65):
-                    betLine[spin] = "batman";
-                    batman++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/batman.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-            }
+        if (playerBet > playerMoneyAmount) {
+            alert("please place a valid wager");
+            playerBet = 0;
+            labelBetAmount.text = playerBet.toString();
         }
-        console.log(betLine, "\n" + outCome);
-        determineWinnings();
-        return betLine;
+        else {
+            hulk = 0;
+            batman = 0;
+            spiderman = 0;
+            superman = 0;
+            blanks = 0;
+            thor = 0;
+            thanos = 0;
+            ironman = 0;
+            slotContainers[0].removeAllChildren();
+            slotContainers[1].removeAllChildren();
+            slotContainers[2].removeAllChildren();
+            var betLine = [" ", " ", " "];
+            var outCome = [0, 0, 0];
+            var bitmap;
+            for (var spin = 0; spin < 3; spin++) {
+                outCome[spin] = Math.floor((Math.random() * 65) + 1);
+                switch (outCome[spin]) {
+                    case checkRange(outCome[spin], 1, 27):
+                        betLine[spin] = "Blank";
+                        blanks++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/blank.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 28, 37):
+                        betLine[spin] = "hulk";
+                        hulk++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/hulk.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 38, 46):
+                        betLine[spin] = "spiderman";
+                        spiderman++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/spiderman.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 47, 54):
+                        betLine[spin] = "ironman";
+                        ironman++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/Ironman.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 55, 59):
+                        betLine[spin] = "superman";
+                        superman++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/superman.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 60, 62):
+                        betLine[spin] = "thor";
+                        thor++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/Thor.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 63, 64):
+                        betLine[spin] = "thanos";
+                        thanos++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/thanos.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 65, 65):
+                        betLine[spin] = "batman";
+                        batman++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/batman.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                }
+            }
+            console.log(betLine, "\n" + outCome);
+            determineWinnings();
+            return betLine;
+        }
     }
 }
 function determineWinnings() {
@@ -406,7 +413,7 @@ function determineWinnings() {
             "superman: " + superman + "\n" + "thanos: " + thanos + "\n" +
             "ironman: " + ironman + "\n" + "thor: " + thor);
         playerMoneyAmount -= playerBet;
-        labelWinAmount.text = "$" + playerMoneyAmount.toString();
+        labelWinAmount.text = "$" + playerBetAmount.toString();
         labelTotalAmount.text = "$" + playerMoneyAmount.toString();
         if (playerMoneyAmount == 0) {
             playerBet = 0;

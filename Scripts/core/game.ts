@@ -295,84 +295,92 @@ function resetFunction() {
 
 // determines the results of the spin
 function _spinReels(): string[] {
+
+
     if (playerBet == 0 || playerMoneyAmount <= 0) {
 
         alert("please place a wager");
     } else {
+        if (playerBet > playerMoneyAmount) {
+            alert("please place a valid wager");
+            playerBet = 0;
+            labelBetAmount.text = playerBet.toString();
+        } else {
 
-        hulk = 0;
-        batman = 0;
-        spiderman = 0;
-        superman = 0;
-        blanks = 0;
-        thor = 0;
-        thanos = 0;
-        ironman = 0;
+            hulk = 0;
+            batman = 0;
+            spiderman = 0;
+            superman = 0;
+            blanks = 0;
+            thor = 0;
+            thanos = 0;
+            ironman = 0;
 
 
-        slotContainers[0].removeAllChildren();
-        slotContainers[1].removeAllChildren();
-        slotContainers[2].removeAllChildren();
+            slotContainers[0].removeAllChildren();
+            slotContainers[1].removeAllChildren();
+            slotContainers[2].removeAllChildren();
 
-        var betLine = [" ", " ", " "];
-        var outCome = [0, 0, 0];
-        var bitmap: string[];
-        for (var spin = 0; spin < 3; spin++) {
-            outCome[spin] = Math.floor((Math.random() * 65) + 1);
-            switch (outCome[spin]) {
-                case checkRange(outCome[spin], 1, 27):  // 41.5% probability
-                    betLine[spin] = "Blank";
-                    blanks++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/blank.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 28, 37): // 15.4% probability
-                    betLine[spin] = "hulk";
-                    hulk++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/hulk.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 38, 46): // 13.8% probability
-                    betLine[spin] = "spiderman";
-                    spiderman++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/spiderman.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 47, 54): // 12.3% probability
-                    betLine[spin] = "ironman";
-                    ironman++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/Ironman.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 55, 59): //  7.7% probability
-                    betLine[spin] = "superman";
-                    superman++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/superman.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 60, 62): //  4.6% probability
-                    betLine[spin] = "thor";
-                    thor++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/Thor.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 63, 64): //  3.1% probability
-                    betLine[spin] = "thanos";
-                    thanos++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/thanos.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
-                case checkRange(outCome[spin], 65, 65): //  1.5% probability
-                    betLine[spin] = "batman";
-                    batman++;
-                    slotItem[spin] = new createjs.Bitmap("../../Assets/images/batman.jpg");
-                    slotContainers[spin].addChild(slotItem[spin]);
-                    break;
+            var betLine = [" ", " ", " "];
+            var outCome = [0, 0, 0];
+            var bitmap: string[];
+            for (var spin = 0; spin < 3; spin++) {
+                outCome[spin] = Math.floor((Math.random() * 65) + 1);
+                switch (outCome[spin]) {
+                    case checkRange(outCome[spin], 1, 27):  // 41.5% probability
+                        betLine[spin] = "Blank";
+                        blanks++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/blank.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 28, 37): // 15.4% probability
+                        betLine[spin] = "hulk";
+                        hulk++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/hulk.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 38, 46): // 13.8% probability
+                        betLine[spin] = "spiderman";
+                        spiderman++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/spiderman.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 47, 54): // 12.3% probability
+                        betLine[spin] = "ironman";
+                        ironman++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/Ironman.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 55, 59): //  7.7% probability
+                        betLine[spin] = "superman";
+                        superman++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/superman.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 60, 62): //  4.6% probability
+                        betLine[spin] = "thor";
+                        thor++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/Thor.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 63, 64): //  3.1% probability
+                        betLine[spin] = "thanos";
+                        thanos++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/thanos.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                    case checkRange(outCome[spin], 65, 65): //  1.5% probability
+                        betLine[spin] = "batman";
+                        batman++;
+                        slotItem[spin] = new createjs.Bitmap("../../Assets/images/batman.jpg");
+                        slotContainers[spin].addChild(slotItem[spin]);
+                        break;
+                }
             }
+            console.log(betLine, "\n" + outCome);
+            determineWinnings();
+            return betLine;
         }
-        console.log(betLine, "\n" + outCome);
-        determineWinnings();
-        return betLine;
     }
 }
 
@@ -469,7 +477,7 @@ function determineWinnings(): void {
         );
         playerMoneyAmount -= playerBet;
 
-        labelWinAmount.text = "$" + playerMoneyAmount.toString();
+        labelWinAmount.text = "$" + playerBetAmount.toString();
         labelTotalAmount.text = "$" + playerMoneyAmount.toString();
         if (playerMoneyAmount == 0) {
             playerBet = 0;
