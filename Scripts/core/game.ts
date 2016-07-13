@@ -20,7 +20,7 @@ let labelBetAmount: objects.Label; //total number player has bet label
 let win: number;
 let playerBet: number;
 let playerBetAmount = 0;
- playerBet = 0;
+playerBet = 0;
 
 //buttons
 let spinButton: createjs.Bitmap;
@@ -123,7 +123,7 @@ function createUI() {
     //Add 3 slot machine items for the game and set default positions
     slotContainers[0] = new createjs.Container();
     slotContainers[1] = new createjs.Container();
-    slotContainers[2] = new createjs.Container();    
+    slotContainers[2] = new createjs.Container();
     game.addChild(slotContainers[0]);
     game.addChild(slotContainers[1]);
     game.addChild(slotContainers[2]);
@@ -139,7 +139,7 @@ function createUI() {
     slotItem[1] = new createjs.Bitmap("assets/images/vs.jpg");
     slotItem[2] = new createjs.Bitmap("assets/images/DCComicslogo.jpg");
 
-    
+
     slotContainers[0].addChild(slotItem[0]);
     slotContainers[1].addChild(slotItem[1]);
     slotContainers[2].addChild(slotItem[2]);
@@ -220,12 +220,17 @@ function createUI() {
 // click the bet 1 button
 function clickBetOneButton() {
 
-    //update variables
-    playerBet += 1;
+    if (playerBet == 0 && playerMoneyAmount <= 0) {
+        alert("please add more cash or vacate the slot machine");
+    }
+    else {
+        //update variables
+        playerBet += 1;
 
-    //upday labels on game
-    labelBetAmount.text = "$" + playerBet.toString();
-    labelTotalAmount.text = "$" + playerMoneyAmount.toString();
+        //upday labels on game
+        labelBetAmount.text = "$" + playerBet.toString();
+        labelTotalAmount.text = "$" + playerMoneyAmount.toString();
+    }
 }
 // click the bet 10 button
 function clickBetTenButton(): void {
@@ -263,7 +268,7 @@ function resetFunction() {
     slotContainers[1].removeAllChildren();
     slotContainers[2].removeAllChildren();
 
-    
+
     slotItem[0] = new createjs.Bitmap("assets/images/marvel.jpg");
     slotItem[1] = new createjs.Bitmap("assets/images/vs.jpg");
     slotItem[2] = new createjs.Bitmap("assets/images/DCComicslogo.jpg");
@@ -445,12 +450,14 @@ function determineWinnings(): void {
     else {
         //show the loss
         console.log("Loss!"
-         + "blanks:" + blanks + "\n" + "batman:" + batman + "\n" + 
-        "hulk: " + hulk + "\n" + "spiderman: " + spiderman + "\n" +
-        "superman: " + superman + "\n" + "thanos: " + thanos + "\n" +
-        "ironman: " + ironman + "\n" + "thor: " + thor
+            + "blanks:" + blanks + "\n" + "batman:" + batman + "\n" +
+            "hulk: " + hulk + "\n" + "spiderman: " + spiderman + "\n" +
+            "superman: " + superman + "\n" + "thanos: " + thanos + "\n" +
+            "ironman: " + ironman + "\n" + "thor: " + thor
         );
         playerMoneyAmount -= playerBet;
+
+        labelWinAmount.text = "$" + playerMoneyAmount.toString();
         labelTotalAmount.text = "$" + playerMoneyAmount.toString();
         if (playerMoneyAmount == 0) {
             playerBet = 0;

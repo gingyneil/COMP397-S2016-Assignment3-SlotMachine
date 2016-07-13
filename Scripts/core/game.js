@@ -177,11 +177,16 @@ function createUI() {
 }
 // click the bet 1 button
 function clickBetOneButton() {
-    //update variables
-    playerBet += 1;
-    //upday labels on game
-    labelBetAmount.text = "$" + playerBet.toString();
-    labelTotalAmount.text = "$" + playerMoneyAmount.toString();
+    if (playerBet == 0 && playerMoneyAmount <= 0) {
+        alert("please add more cash or vacate the slot machine");
+    }
+    else {
+        //update variables
+        playerBet += 1;
+        //upday labels on game
+        labelBetAmount.text = "$" + playerBet.toString();
+        labelTotalAmount.text = "$" + playerMoneyAmount.toString();
+    }
 }
 // click the bet 10 button
 function clickBetTenButton() {
@@ -386,6 +391,7 @@ function determineWinnings() {
             "superman: " + superman + "\n" + "thanos: " + thanos + "\n" +
             "ironman: " + ironman + "\n" + "thor: " + thor);
         playerMoneyAmount -= playerBet;
+        labelWinAmount.text = "$" + playerMoneyAmount.toString();
         labelTotalAmount.text = "$" + playerMoneyAmount.toString();
         if (playerMoneyAmount == 0) {
             playerBet = 0;
