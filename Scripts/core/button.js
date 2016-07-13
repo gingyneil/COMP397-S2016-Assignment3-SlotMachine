@@ -9,10 +9,6 @@ var Button = (function (_super) {
         _super.call(this, imageString);
         //  this.on("click", onclick);
     }
-    Button.prototype.onclick = function (event) {
-        playerBet += 1;
-        playerBetAmount.text = playerBet.toString();
-    };
     return Button;
 }(createjs.Bitmap));
 //# sourceMappingURL=button.js.map
