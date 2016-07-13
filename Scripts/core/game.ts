@@ -291,6 +291,7 @@ function resetFunction() {
     labelBetAmount.text = "$" + playerBet.toString();
     labelWinAmount.text = "$" + win.toString();
     labelTotalAmount.text = "$" + playerMoneyAmount.toString();
+    spinButton.alpha = 1;
 }
 
 // determines the results of the spin
@@ -305,6 +306,7 @@ function _spinReels(): string[] {
             alert("please place a valid wager");
             playerBet = 0;
             labelBetAmount.text = playerBet.toString();
+            
         } else {
 
             hulk = 0;
@@ -483,6 +485,7 @@ function determineWinnings(): void {
             playerBet = 0;
             labelBetAmount.text = "$" + playerBet.toString();
             alert("you lose please add more cash or vacate the slot machine");
+            spinButton.alpha = .5;
         }
         playerBetAmount = 0;
         blanks = 0;
@@ -500,10 +503,7 @@ function checkRange(value, lowerBounds, upperBounds) {
     }
 
 }
-function mouseOver() {
 
-    betOneButton.alpha = .1;
-}
 
 
 
