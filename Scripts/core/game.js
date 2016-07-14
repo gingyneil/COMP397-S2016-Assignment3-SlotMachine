@@ -3,10 +3,10 @@
  * Name: Neil Reading
  * Student number: 300793474
  * Date: July 10th/2016
- *
- * Description: Assignment 3 - SlotMachine project made using TypeScript
- *
- *
+ * Program Description: Assignment 3 - SlotMachine project made using TypeScript *
+ * Last Modified by: Neil Reading
+ * last Modified: 7/13/16 7pm
+ * Revision History: https://github.com/gingyneil/COMP397-S2016-Assignment3-SlotMachine
  */
 //VARIABLES*********************************
 var slotContainers = [];

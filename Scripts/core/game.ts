@@ -3,11 +3,11 @@
 /**
  * Name: Neil Reading 
  * Student number: 300793474
- * Date: July 10th/2016
- * 
- * Description: Assignment 3 - SlotMachine project made using TypeScript
- * 
- * 
+ * Date: July 10th/2016 
+ * Program Description: Assignment 3 - SlotMachine project made using TypeScript * 
+ * Last Modified by: Neil Reading
+ * last Modified: 7/13/16 7pm
+ * Revision History: https://github.com/gingyneil/COMP397-S2016-Assignment3-SlotMachine
  */
 
 //VARIABLES*********************************
@@ -225,7 +225,7 @@ function createUI() {
     betMaxButton.x = 340;
     betMaxButton.y = 430;
 
- 
+
 }
 
 
@@ -233,7 +233,7 @@ function createUI() {
 // click the bet 1 button
 function clickBetOneButton() {
 
-//checks to see if the player has enough money to make a bet. 
+    //checks to see if the player has enough money to make a bet. 
     if (playerBet == 0 && playerMoneyAmount <= 0) {
         alert("please add more cash or vacate the slot machine");
     }
@@ -311,7 +311,7 @@ function resetFunction() {
 // determines the results of the spin
 function _spinReels(): string[] {
 
-//checks to see if the player has enough money to make the bet
+    //checks to see if the player has enough money to make the bet
     if (playerBet == 0 || playerMoneyAmount <= 0) {
 
         alert("please place a wager");
@@ -320,7 +320,7 @@ function _spinReels(): string[] {
             alert("please place a valid wager");
             playerBet = 0;
             labelBetAmount.text = playerBet.toString();
-            
+
         } else {
 
             hulk = 0;
@@ -483,7 +483,7 @@ function determineWinnings(): void {
     }
     else {
         //show the loss
-        
+
         playerMoneyAmount -= playerBet;
 
         labelWinAmount.text = "$" + playerBetAmount.toString();
